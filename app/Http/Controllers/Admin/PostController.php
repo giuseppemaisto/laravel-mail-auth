@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
 use App\Models\Type;
+use App\Models\Lead;
+use App\Mail\ConfirmPost;
 use App\Models\Technology;
+use Illuminate\Support\Facades\Mail;
 
 
 class PostController extends Controller
@@ -63,6 +66,16 @@ class PostController extends Controller
         if($request->has('technologies')){
             $newPost->technologies()->attach($request->technologies);
         }
+
+        $new_lead = new Lead();
+        $new_lead->title = $form_data['title'];
+        $new_lead->slug = $form_data['slug'] ;
+        $new_lead->language = $form_data['language'] ;
+        $new_lead->description = $form_data['description'] ;
+
+        $new_lead->save();
+
+        Mail::to('hello@example.com')->send(new ConfirmPost($new_lead));
         return redirect()->route('admin.posts.index')->with('message','post creato correttamente');
     }
 

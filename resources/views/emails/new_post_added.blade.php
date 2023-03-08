@@ -3,5 +3,6 @@
     titolo:{{$lead->title}} <br>
     slug:{{$lead->slug}} <br>
     language:{{$lead->language}} <br>
-    titolo:{{$lead->title}} <br>
+    descrizione:{{$lead->description}} <br>
+    
 </p>
