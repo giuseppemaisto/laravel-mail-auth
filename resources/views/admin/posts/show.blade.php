@@ -13,6 +13,10 @@
             </div>
 
             <div class="col-12">
+                <div>
+                    <img src="{{ asset('storage/' .$post->cover_image)}}" alt="{{$post->title}}" class="w-50">
+                </div>
+                
                 <strong>Slug:</strong><p>{{$post->slug}}</p>
                 <strong>titolo</strong>
                 <p>{{$post->title}}</p>

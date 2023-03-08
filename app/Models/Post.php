@@ -9,7 +9,7 @@ use App\Models\Type;
 
 class Post extends Model
 {
-    protected $fillable = ['title','language','description','slug','type_id'];
+    protected $fillable = ['title','language','description','slug','type_id','cover_image'];
     use HasFactory;
 
     public static function generateSlug($title){

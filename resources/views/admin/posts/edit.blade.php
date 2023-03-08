@@ -15,7 +15,7 @@
         </div>
         <div class="col-12">
             
-            <form action="{{ route('admin.posts.update', $post->slug)}} " method="POST">
+            <form action="{{ route('admin.posts.update', $post->slug)}} " method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group my-3">
@@ -25,6 +25,17 @@
                     <input type="text" class="form-control" placeholder="inserisci titolo progetto" id="title" name="title" value="{{old('title') ?? $post->title}}">
                     
                 </div>
+               
+
+                <div class="form-group my-3">
+                    <label class="control-label">immagine in uso</label>
+                    <div>
+                        <img src="{{ asset('storage/'.$post->cover_image)}}" alt="{{$post->title}}" class="w-50">
+                    </div>
+                    <label class="control-label">immagine</label>
+                    <input type="file" name="cover_image" id="cover_image" class="form-control @error('cover_image')is-invalid @enderror">
+                </div>
+
 
                 <div class="form-group my-3">
                     <label class="control-label">
