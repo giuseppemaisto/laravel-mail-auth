@@ -29,6 +29,7 @@ class StorePostRequest extends FormRequest
             'description'=>['nullable'],
             'type_id'=>['nullable','exists:types,id'],
             'technologies'=>['exists:technologies,id'],
+            'cover_image'=>['nullable','image']
         ];
     }
 
@@ -38,7 +39,7 @@ class StorePostRequest extends FormRequest
             'title.unique' => 'titolo già presente',
             'title.max' => 'il titolo deve essere di massimo :max caratteri',
             'type_id.exists' => 'non valido',
-            'technologies' => 'la tecnologia non è valida',
+            'technologies' => 'la tecnologia non è valida'
         ];
     }
 }

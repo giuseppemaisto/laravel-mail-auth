@@ -8,13 +8,18 @@
             <h1>aggiungi nuovo progetto</h1>
         </div>
         <div class="col-12">
-            <form action="{{ route('admin.posts.store')}} " method="POST">
+            <form action="{{ route('admin.posts.store')}} " method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group my-3">
                     <label class="control-label">
                         Titolo
                     </label>
                     <input type="text" class="form-control" placeholder="inserisci titolo progetto" id="title" name="title">
+                </div>
+
+                <div class="form-group my-3">
+                    <label class="control-label">immagine</label>
+                    <input type="file" name="cover_image" id="cover_image" class="form-control @error('cover_image')is-invalid @enderror">
                 </div>
 
                 <div class="form-group my-3">

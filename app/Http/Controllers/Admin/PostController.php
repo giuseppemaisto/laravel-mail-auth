@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
 use App\Models\Type;
 use App\Models\Technology;
@@ -51,6 +52,12 @@ class PostController extends Controller
         $form_data['slug'] = $slug;
 
         $newPost = new Post();
+        if($request->has('cover_image')){
+            $path = Storage::disk('public')->put('post_images', $request->cover_image);
+
+            $form_data['cover_image'] = $path;
+        }
+
         $newPost->fill($form_data);
         $newPost->save();
         if($request->has('technologies')){
